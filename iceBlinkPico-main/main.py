@@ -1,7 +1,11 @@
 import os
 import subprocess
 
+projects_dir = "/Users/user/Documents/Coding/Computer Architecture/comparch_sp24/iceBlinkPico-main/projects/"
+examples_dir = "/Users/user/Documents/Coding/Computer Architecture/comparch_sp24/iceBlinkPico-main/examples/"
+
 def run_make(folder_name):
+
     # Set up the environment
     environment_script = "/Users/user/Documents/Coding/Computer Architecture/oss-cad-suite/environment"
     
@@ -14,12 +18,14 @@ def run_make(folder_name):
     subprocess.run(f"source {environment_script_escaped} && make clean", shell=True, executable="/bin/bash", cwd=folder_name)
 
 if __name__ == "__main__":
+
+    # Define name of folder that will have makefile to run
     folder_name = input("Makefile: ") or 'rgb'
 
     # Define the two base directories to search
     base_dirs = [
-        "/Users/user/Documents/Coding/Computer Architecture/iceBlinkPico-main/projects/",
-        "/Users/user/Documents/Coding/Computer Architecture/iceBlinkPico-main/examples/"
+        projects_dir,
+        examples_dir
     ]
     
     # Check if the folder exists in either of the directories
@@ -35,5 +41,3 @@ if __name__ == "__main__":
         raise FileNotFoundError(f"- '{folder_name}' not found in directories.")
     
     print("ran make: ", folder_name)
-    
-    # run_make("/Users/user/Documents/Coding/Computer Architecture/iceBlinkPico-main/projects/"+folder_name)
