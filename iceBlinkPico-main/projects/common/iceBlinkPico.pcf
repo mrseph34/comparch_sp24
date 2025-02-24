@@ -11,7 +11,7 @@ set_io -nowarn RGB_G    40
 set_io -nowarn RGB_R    41
 
 # 12-MHz CMOS oscillator
-set_io -nowarn clk      20
+set_io -nowarn CLK      20
 
 # I/O pins routed to left header
 set_io -nowarn _31b     18
