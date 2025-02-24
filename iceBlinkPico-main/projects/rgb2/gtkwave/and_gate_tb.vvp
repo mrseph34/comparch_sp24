@@ -1,0 +1,55 @@
+#! /opt/local/bin/vvp
+:ivl_version "12.0 (stable)";
+:ivl_delay_selection "TYPICAL";
+:vpi_time_precision + 0;
+:vpi_module "/opt/local/lib/ivl/system.vpi";
+:vpi_module "/opt/local/lib/ivl/vhdl_sys.vpi";
+:vpi_module "/opt/local/lib/ivl/vhdl_textio.vpi";
+:vpi_module "/opt/local/lib/ivl/v2005_math.vpi";
+:vpi_module "/opt/local/lib/ivl/va_math.vpi";
+S_0x14a6045c0 .scope module, "and_gate_tb" "and_gate_tb" 2 1;
+ .timescale 0 0;
+v0x600000d0c1b0_0 .var "a", 0 0;
+v0x600000d0c240_0 .var "b", 0 0;
+v0x600000d0c2d0_0 .net "c", 0 0, L_0x60000140c000;  1 drivers
+S_0x14a604730 .scope module, "uut" "and_gate" 2 7, 2 31 0, S_0x14a6045c0;
+ .timescale 0 0;
+    .port_info 0 /INPUT 1 "a";
+    .port_info 1 /INPUT 1 "b";
+    .port_info 2 /OUTPUT 1 "c";
+L_0x60000140c000 .functor AND 1, v0x600000d0c1b0_0, v0x600000d0c240_0, C4<1>, C4<1>;
+v0x600000d0c000_0 .net "a", 0 0, v0x600000d0c1b0_0;  1 drivers
+v0x600000d0c090_0 .net "b", 0 0, v0x600000d0c240_0;  1 drivers
+v0x600000d0c120_0 .net "c", 0 0, L_0x60000140c000;  alias, 1 drivers
+    .scope S_0x14a6045c0;
+T_0 ;
+    %vpi_call 2 16 "$dumpfile", "and_gate_tb.vcd" {0 0 0};
+    %vpi_call 2 17 "$dumpvars", 32'sb00000000000000000000000000000000, S_0x14a6045c0 {0 0 0};
+    %pushi/vec4 0, 0, 1;
+    %store/vec4 v0x600000d0c1b0_0, 0, 1;
+    %pushi/vec4 0, 0, 1;
+    %store/vec4 v0x600000d0c240_0, 0, 1;
+    %delay 10, 0;
+    %pushi/vec4 0, 0, 1;
+    %store/vec4 v0x600000d0c1b0_0, 0, 1;
+    %pushi/vec4 1, 0, 1;
+    %store/vec4 v0x600000d0c240_0, 0, 1;
+    %delay 10, 0;
+    %pushi/vec4 1, 0, 1;
+    %store/vec4 v0x600000d0c1b0_0, 0, 1;
+    %pushi/vec4 0, 0, 1;
+    %store/vec4 v0x600000d0c240_0, 0, 1;
+    %delay 10, 0;
+    %pushi/vec4 1, 0, 1;
+    %store/vec4 v0x600000d0c1b0_0, 0, 1;
+    %pushi/vec4 1, 0, 1;
+    %store/vec4 v0x600000d0c240_0, 0, 1;
+    %delay 10, 0;
+    %vpi_call 2 26 "$finish" {0 0 0};
+    %end;
+    .thread T_0;
+# The file index is used to find the file name in the following table.
+:file_names 3;
+    "N/A";
+    "<interactive>";
+    "and_gate_tb.v";
