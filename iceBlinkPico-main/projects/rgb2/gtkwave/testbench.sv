@@ -1,12 +1,12 @@
 module testbench;
     // Testbench signals
-    logic CLK;
+    logic clk;
     logic LED;
     logic RGB_R, RGB_G, RGB_B;
 
     // Instantiate the top module
     top uut (
-        .CLK(CLK),
+        .clk(clk),
         .LED(LED),
         .RGB_R(RGB_R),
         .RGB_G(RGB_G),
@@ -15,8 +15,8 @@ module testbench;
 
     // Clock generation
     initial begin
-        CLK = 0;
-        forever #5 CLK = ~CLK; // 10 time units for a full clock cycle
+        clk = 0;
+        forever #5 clk = ~clk; // 10 time units for a full clock cycle
     end
 
     // Test stimulus and monitoring

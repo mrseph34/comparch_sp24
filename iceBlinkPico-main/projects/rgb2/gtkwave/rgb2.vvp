@@ -12,14 +12,14 @@ S_0x134705a50 .scope package, "$unit" "$unit" 2 1;
  .timescale 0 0;
 S_0x13470ec30 .scope module, "testbench" "testbench" 3 1;
  .timescale 0 0;
-v0x134729120_0 .var "CLK", 0 0;
+v0x134729120_0 .var "clk", 0 0;
 v0x1347291b0_0 .net "LED", 0 0, v0x134728950_0;  1 drivers
 v0x134729240_0 .net "RGB_B", 0 0, v0x1347289f0_0;  1 drivers
 v0x134729310_0 .net "RGB_G", 0 0, v0x134728aa0_0;  1 drivers
 v0x1347293c0_0 .net "RGB_R", 0 0, v0x134728b40_0;  1 drivers
 S_0x13470eda0 .scope module, "uut" "top" 3 8, 4 1 0, S_0x13470ec30;
  .timescale 0 0;
-    .port_info 0 /INPUT 1 "CLK";
+    .port_info 0 /INPUT 1 "clk";
     .port_info 1 /OUTPUT 1 "LED";
     .port_info 2 /OUTPUT 1 "RGB_R";
     .port_info 3 /OUTPUT 1 "RGB_G";
@@ -28,7 +28,7 @@ P_0x134718ee0 .param/l "ANGLE_MAX" 0 4 10, +C4<00000000000000000000000101101000>
 P_0x134718f20 .param/l "PWM_BITS" 0 4 8, +C4<00000000000000000000000000000100>;
 P_0x134718f60 .param/l "PWM_COUNT_MAX" 0 4 9, +C4<00000000000000000000000000001111>;
 P_0x134718fa0 .param/l "STEP_SIZE" 0 4 11, +C4<00000000000000000000000000111100>;
-v0x134706730_0 .net "CLK", 0 0, v0x134729120_0;  1 drivers
+v0x134706730_0 .net "clk", 0 0, v0x134729120_0;  1 drivers
 v0x134728950_0 .var "LED", 0 0;
 v0x1347289f0_0 .var "RGB_B", 0 0;
 v0x134728aa0_0 .var "RGB_G", 0 0;

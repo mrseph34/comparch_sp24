@@ -2,7 +2,7 @@
 
 module top(
 
-    input logic CLK,                                            // 12 MHz clock input
+    input logic clk,                                            // 12 MHz clock input
     output logic LED,                                           // On-board LED output (active low)
     output logic RGB_R, RGB_G, RGB_B                            // RGB LED outputs (active low)
 
@@ -22,7 +22,7 @@ module top(
     end
 
     // Always block triggered on the rising edge of the clock
-    always_ff @(posedge CLK) begin 
+    always_ff @(posedge clk) begin 
            
         // Check if the count has reached the interval limit
         if (count == INTERVAL - 1) begin  

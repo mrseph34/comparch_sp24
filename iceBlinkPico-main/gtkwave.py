@@ -20,13 +20,13 @@ def run_simulation(folder_path, folder_name, testbench_name, sv_name, remake):
             print("Error in iverilog step, stopping.")
             exit(1)
 
-        # result = subprocess.run(
-        #     f'source ~/.bash_profile && vvp {folder_name}.vvp',
-        #     shell=True, executable="/bin/bash", cwd=gtkwave_dir
-        # )
-        # if result.returncode != 0:
-        #     print("Error in vvp step, stopping.")
-        #     exit(1)
+        result = subprocess.run(
+            f'source ~/.bash_profile && vvp {folder_name}.vvp',
+            shell=True, executable="/bin/bash", cwd=gtkwave_dir
+        )
+        if result.returncode != 0:
+            print("Error in vvp step, stopping.")
+            exit(1)
 
     result = subprocess.run(
         [f"{oss_cad_suite_bin}/gtkwave", f"{gtkwave_dir}/{folder_name}.vcd"],
@@ -38,9 +38,9 @@ def run_simulation(folder_path, folder_name, testbench_name, sv_name, remake):
 
 if __name__ == "__main__":
     remake = input("Remake: ") or None
-    folder_name = input("Folder Name: ") or "rgb2"
-    sv_name = input("SV File (top.sv): ") or "top.sv"
-    testbench_name = input("Testbench File (testbench.sv): ") or "testbench.sv"
+    folder_name = input("Folder Name: ") or "sine2"
+    sv_name = input("SV File (top.sv): ") or "sine2.sv"
+    testbench_name = input("Testbench File (testbench.sv): ") or "sine2_tb.sv"
 
     base_dirs = [projects_dir, examples_dir]
     folder_found = False

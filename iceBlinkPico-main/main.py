@@ -20,7 +20,7 @@ def run_make(folder_name):
 if __name__ == "__main__":
 
     # Define name of folder that will have makefile to run
-    folder_name = input("Makefile: ") or 'rgb2'
+    folder_name = input("Makefile: ") or 'sine2'
 
     # Define the two base directories to search
     base_dirs = [

@@ -1,7 +1,7 @@
 // RGB 2.000
 
 module top(
-    input logic CLK,                    // 12 MHz clock input
+    input logic clk,                    // 12 MHz clock input
     output logic LED,                   // On-board LED output (active low)
     output logic RGB_R, RGB_G, RGB_B    // RGB LED outputs (active low)
 );
@@ -65,7 +65,7 @@ module top(
     end
     
     // Combined PWM and control logic
-    always_ff @(posedge CLK) begin
+    always_ff @(posedge clk) begin
         count <= count + 1;
         
         // Update PWM counter
