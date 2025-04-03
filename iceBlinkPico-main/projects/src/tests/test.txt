@@ -1,0 +1,19 @@
+# Expected Register Values Before and After Test Operations
+
+# Initial Register State (All registers initialized to 0)
+x0  = 0x00000000  # Zero register (always 0)
+...
+x31 = 0x00000000  
+
+# Expected Values After Writing to Registers
+# Assume the following instructions were executed:
+# addi x5, x0, 10  (x5 = 10)
+# addi x10, x0, 20 (x10 = 20)
+# add x15, x5, x10 (x15 = x5 + x10 = 30)
+
+x5  = 0x0000000A  # 10 in decimal
+x10 = 0x00000014  # 20 in decimal
+x15 = 0x0000001E  # 30 in decimal
+
+# Ensure x0 remains 0 after any writes
+x0  = 0x00000000  # Must always be 0

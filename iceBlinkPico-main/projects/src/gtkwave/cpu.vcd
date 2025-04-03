@@ -1,0 +1,273 @@
+$date
+	Mon Mar 31 20:22:38 2025
+$end
+$version
+	Icarus Verilog
+$end
+$timescale
+	1ps
+$end
+$scope module cpu_tb $end
+$var wire 32 ! write_data [31:0] $end
+$var wire 1 " mem_write $end
+$var wire 1 # mem_read $end
+$var wire 32 $ mem_addr [31:0] $end
+$var reg 1 % clk $end
+$var reg 32 & instr [31:0] $end
+$var reg 32 ' mem_data [31:0] $end
+$var reg 1 ( reset $end
+$scope module uut $end
+$var wire 1 % clk $end
+$var wire 32 ) instr [31:0] $end
+$var wire 32 * mem_addr [31:0] $end
+$var wire 32 + mem_data [31:0] $end
+$var wire 1 ( reset $end
+$var wire 32 , write_data [31:0] $end
+$var wire 1 - reg_write $end
+$var wire 32 . read_data [31:0] $end
+$var wire 32 / pc [31:0] $end
+$var wire 1 " mem_write $end
+$var wire 1 0 mem_to_reg $end
+$var wire 1 # mem_read $end
+$var wire 1 1 branch $end
+$var wire 1 2 alu_src $end
+$var wire 32 3 alu_result [31:0] $end
+$var wire 4 4 alu_op [3:0] $end
+$scope module CU $end
+$var wire 3 5 funct3 [2:0] $end
+$var wire 7 6 funct7 [6:0] $end
+$var wire 7 7 opcode [6:0] $end
+$var reg 4 8 alu_op [3:0] $end
+$var reg 1 2 alu_src $end
+$var reg 1 1 branch $end
+$var reg 1 # mem_read $end
+$var reg 1 0 mem_to_reg $end
+$var reg 1 " mem_write $end
+$var reg 1 - reg_write $end
+$upscope $end
+$scope module DP $end
+$var wire 4 9 alu_op [3:0] $end
+$var wire 1 2 alu_src $end
+$var wire 1 1 branch $end
+$var wire 1 % clk $end
+$var wire 32 : instr [31:0] $end
+$var wire 32 ; mem_addr [31:0] $end
+$var wire 32 < mem_data [31:0] $end
+$var wire 1 # mem_read $end
+$var wire 1 0 mem_to_reg $end
+$var wire 1 " mem_write $end
+$var wire 32 = read_data [31:0] $end
+$var wire 1 - reg_write $end
+$var wire 1 ( reset $end
+$var wire 32 > write_data [31:0] $end
+$var wire 1 ? zero $end
+$var wire 5 @ rs2 [4:0] $end
+$var wire 5 A rs1 [4:0] $end
+$var wire 32 B reg_data2 [31:0] $end
+$var wire 32 C reg_data1 [31:0] $end
+$var wire 5 D rd [4:0] $end
+$var wire 32 E mem_out [31:0] $end
+$var wire 32 F imm [31:0] $end
+$var wire 32 G alu_result [31:0] $end
+$var reg 32 H pc [31:0] $end
+$scope module ALU $end
+$var wire 4 I alu_op [3:0] $end
+$var wire 32 J b [31:0] $end
+$var wire 32 K a [31:0] $end
+$var reg 32 L result [31:0] $end
+$var reg 32 M shift_amount [31:0] $end
+$var reg 1 ? zero $end
+$upscope $end
+$scope module MEM $end
+$var wire 32 N addr [31:0] $end
+$var wire 1 % clk $end
+$var wire 1 # mem_read $end
+$var wire 1 " mem_write $end
+$var wire 32 O write_data [31:0] $end
+$var wire 32 P read_data [31:0] $end
+$upscope $end
+$scope module RF $end
+$var wire 1 % clk $end
+$var wire 5 Q rd [4:0] $end
+$var wire 1 - reg_write $end
+$var wire 5 R rs1 [4:0] $end
+$var wire 5 S rs2 [4:0] $end
+$var wire 32 T write_data [31:0] $end
+$var wire 32 U read_data2 [31:0] $end
+$var wire 32 V read_data1 [31:0] $end
+$upscope $end
+$upscope $end
+$upscope $end
+$upscope $end
+$enddefinitions $end
+$comment Show the parameter values. $end
+$dumpall
+$end
+#0
+$dumpvars
+b0 V
+b0 U
+b0 T
+b0 S
+b0 R
+b0 Q
+bx P
+b0 O
+b0 N
+b0 M
+b0 L
+b0 K
+b0 J
+b0 I
+b0 H
+b0 G
+b0 F
+bx E
+b0 D
+b0 C
+b0 B
+b0 A
+b0 @
+1?
+b0 >
+bx =
+b0 <
+b0 ;
+b0 :
+b0 9
+b0 8
+b0 7
+b0 6
+b0 5
+b0 4
+b0 3
+02
+01
+00
+b0 /
+bx .
+0-
+b0 ,
+b0 +
+b0 *
+b0 )
+1(
+b0 '
+b0 &
+0%
+b0 $
+0#
+0"
+b0 !
+$end
+#5000
+1%
+#10000
+0%
+0(
+#15000
+b100 /
+b100 H
+1%
+#20000
+b1 T
+0?
+b1 ;
+b1 $
+b1 *
+b1 3
+b1 G
+b1 L
+b1 N
+b1 M
+b1 J
+12
+1-
+bx !
+bx ,
+bx >
+bx B
+bx O
+bx U
+b10011 7
+b1 @
+b1 S
+b1 D
+b1 Q
+b1 F
+0%
+b100000000000010010011 &
+b100000000000010010011 )
+b100000000000010010011 :
+#25000
+b1 !
+b1 ,
+b1 >
+b1 B
+b1 O
+b1 U
+b1000 /
+b1000 H
+1%
+#30000
+0%
+#35000
+b1100 /
+b1100 H
+1%
+#40000
+0%
+#45000
+b10000 /
+b10000 H
+1%
+#50000
+0%
+#55000
+b10100 /
+b10100 H
+1%
+#60000
+0%
+#65000
+b11000 /
+b11000 H
+1%
+#70000
+0%
+#75000
+b11100 /
+b11100 H
+1%
+#80000
+0%
+#85000
+b100000 /
+b100000 H
+1%
+#90000
+0%
+#95000
+b100100 /
+b100100 H
+1%
+#100000
+0%
+#105000
+b101000 /
+b101000 H
+1%
+#110000
+0%
+#115000
+b101100 /
+b101100 H
+1%
+#120000
+0%
+#125000
+b110000 /
+b110000 H
+1%
+#130000
+0%
