@@ -1,54 +1,71 @@
-module immediate_generator_tb;
+`timescale 1ps / 1ps
+
+module instruction_decoder_tb;
     logic [31:0] instr;
+    logic [6:0] opcode;
+    logic [4:0] rd, rs1, rs2;
+    logic [2:0] funct3;
+    logic [6:0] funct7;
     logic [31:0] imm;
+    logic reg_write, mem_read, mem_write, branch;
 
-    immediate_generator uut (.instr(instr), .imm(imm));
+    // Instantiate the decoder
+    instruction_decoder uut (
+        .instr(instr),
+        .opcode(opcode),
+        .rd(rd),
+        .funct3(funct3),
+        .rs1(rs1),
+        .rs2(rs2),
+        .funct7(funct7),
+        .imm(imm),
+        .reg_write(reg_write),
+        .mem_read(mem_read),
+        .mem_write(mem_write),
+        .branch(branch)
+    );
 
+    // VCD dump for GTKWave
     initial begin
-        $dumpfile("gtkwave/immediate_generator.vcd");
-        $dumpvars(0, immediate_generator_tb);
+        $dumpfile("gtkwave/instruction_decoder.vcd");
+        $dumpvars(0, instruction_decoder_tb);
+    end
 
-        $display("Starting Immediate Generator Test...");
+    // Test procedure
+    initial begin
+        $display("Starting Instruction Decoder Test...");
 
-        // Test I-type (ADDI)
-        instr = 32'b00000000011101010000000110010011; // ADDI, imm = 7
+        // R-type ADD instruction (add x5, x10, x15)
+        instr = 32'b00000001111001010000000110110011; // ADD x5, x10, x15
         #10;
-        $display("I-type ADDI: instr=%b, imm=%d", instr, imm);
-        assert(imm == 7) else $error("Failed ADDI");
+        $display("R-type ADD: opcode=%b, rd=%d, rs1=%d, rs2=%d, funct3=%b, funct7=%b, reg_write=%b", opcode, rd, rs1, rs2, funct3, funct7, reg_write);
 
-        // Test Load (LW)
-        instr = 32'b00000000010001010010000010000011; // LW, imm = 4
+        // I-type ADDI instruction (addi x5, x10, 7)
+        instr = 32'b00000000011101010000000110010011; // ADDI x5, x10, 7
         #10;
-        $display("Load LW: instr=%b, imm=%d", instr, imm);
-        assert(imm == 4) else $error("Failed LW");
+        $display("I-type ADDI: opcode=%b, rd=%d, rs1=%d, imm=%d, funct3=%b, reg_write=%b", opcode, rd, rs1, imm, funct3, reg_write);
 
-        // Test Store (SW)
-        instr = 32'b00000000000100101010010100100011; // SW, expected imm = 1
+        // Load LW instruction (lw x5, 4(x10))
+        instr = 32'b00000000010001010010000010000011; // LW x5, 4(x10)
         #10;
-        $display("Store SW: instr=%b, imm=%d", instr, imm);
-        assert(imm == 1) else $error("Failed SW");
+        $display("Load LW: opcode=%b, rd=%d, rs1=%d, imm=%d, funct3=%b, mem_read=%b", opcode, rd, rs1, imm, funct3, mem_read);
 
-        // Test Branch (BEQ)
-        instr = 32'b00000000000001010000001011100011; // BEQ, expected imm = 4
+        // Store SW instruction (sw x5, 1(x10))
+        instr = 32'b00000000010101010010000010100011; // SW x5, 1(x10)
         #10;
-        $display("Branch BEQ: instr=%b, imm=%d", instr, imm);
+        $display("Store SW: opcode=%b, rs1=%d, rs2=%d, imm=%d, funct3=%b, mem_write=%b", opcode, rs1, rs2, imm, funct3, mem_write);
 
-        // Calculate the expected immediate for BEQ
-        logic [12:0] b_imm_12_10_5 = {instr[31], instr[7], instr[30:25], instr[11:8], 1'b0};
-        logic signed [31:0] b_imm_signed = $signed(b_imm_12_10_5);
-        assert(imm == b_imm_signed) else $error("Failed BEQ");
-
-        // Test Jump (JAL)
-        instr = 32'b00000000000000000000000001101111; // JAL, expected imm = 0
+        // Branch BEQ instruction (beq x10, x5, 4)
+        instr = 32'b00000000010101010000000001100011; // BEQ x10, x5, 4
         #10;
-        $display("Jump JAL: instr=%b, imm=%d", instr, imm);
+        $display("Branch BEQ: opcode=%b, rs1=%d, rs2=%d, imm=%d, funct3=%b, branch=%b", opcode, rs1, rs2, imm, funct3, branch);
 
-        // Calculate the expected immediate for JAL
-        logic [20:1] j_imm_20_1 = {instr[31], instr[19:12], instr[20], instr[30:21]};
-        logic signed [31:0] j_imm_signed = $signed({j_imm_20_1, 1'b0});
-        assert(imm == j_imm_signed) else $error("Failed JAL");
+        // Jump JAL instruction (jal x5, 64)
+        instr = 32'b00000001000000000000000110101111; // JAL x5, 64
+        #10;
+        $display("Jump JAL: opcode=%b, rd=%d, imm=%d, reg_write=%b", opcode, rd, imm, reg_write);
 
-        $display("Immediate Generator Test Completed.");
+        $display("Instruction Decoder Test Completed.");
         $finish;
     end
 endmodule

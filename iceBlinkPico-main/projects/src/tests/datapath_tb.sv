@@ -54,9 +54,6 @@ module datapath_tb;
         // Release reset after a few clock cycles
         #20 reset = 0;
         
-        // Example instruction sequence - these should match your mem_init.hex file
-        // For testing purposes, I'll add some sample instructions
-        
         // ADD R1, R0, R0 (R1 = 0)
         #10;
         reg_write = 1;

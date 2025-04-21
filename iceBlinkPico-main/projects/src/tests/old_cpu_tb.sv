@@ -105,7 +105,7 @@ module cpu_tb;
             @(posedge clk);
             #1;
             for (i = 0; i < 8; i++) begin
-                //$display("Reg[%0d] = %h", i, uut.DP.RF.registers[i]);
+                $display("Reg[%0d] = %h", i, uut.DP.RF.registers[i]);
             end
         end
     end

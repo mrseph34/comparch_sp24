@@ -19,4 +19,9 @@ module register_file (
             registers[rd] <= write_data;
     end
 
+    // Function to read the value of a register
+    function logic [31:0] read_register(input logic [4:0] reg_index);
+        return registers[reg_index];
+    endfunction
+
 endmodule

@@ -37,15 +37,15 @@ module memory_tb;
         addr = 0;
         #10;
         $display("Memory[0]: %h", read_data);
-
-        // Write test
-        $display("Writing to memory...");
+        
+        // Write test to regular memory
+        $display("Writing to regular memory...");
         mem_read = 0;
         mem_write = 1;
         addr = 4;
         write_data = 32'hDEADBEEF;
         #10;
-        mem_write = 0;
+        mem_write = 0; // Disable write
 
         // Read back written value
         $display("Reading back from memory...");
@@ -53,6 +53,51 @@ module memory_tb;
         addr = 4;
         #10;
         $display("Memory[4]: %h", read_data);
+
+        // Test Memory-Mapped Peripheral: LED PWM Control
+        $display("Testing LED PWM Control...");
+        mem_read = 0;
+        mem_write = 1;
+        addr = 32'hFFF00000; // Address for PWM control
+        write_data = 32'hAA; // Example value
+        #10;
+        mem_write = 0; // Disable write
+
+        // Read back from LED PWM control
+        mem_read = 1;
+        addr = 32'hFFF00000; // Read back from the same address
+        #10;
+        $display("LED PWM Control: %h", read_data);
+
+        // Test Timer (millisecond)
+        $display("Testing Millisecond Timer...");
+        mem_read = 0;
+        mem_write = 1;
+        addr = 32'hFFF00004; // Address for ms timer
+        write_data = 32'h12345678; // Write example value
+        #10;
+        mem_write = 0; // Disable write
+
+        // Read back from millisecond timer
+        mem_read = 1;
+        addr = 32'hFFF00004; // Read back from the same address
+        #10;
+        $display("Millisecond Timer: %h", read_data);
+
+        // Test Timer (microsecond)
+        $display("Testing Microsecond Timer...");
+        mem_read = 0;
+        mem_write = 1;
+        addr = 32'hFFF00008; // Address for us timer
+        write_data = 32'h9ABCDEF0; // Write example value
+        #10;
+        mem_write = 0; // Disable write
+
+        // Read back from microsecond timer
+        mem_read = 1;
+        addr = 32'hFFF00008; // Read back from the same address
+        #10;
+        $display("Microsecond Timer: %h", read_data);
 
         // End simulation
         $finish;

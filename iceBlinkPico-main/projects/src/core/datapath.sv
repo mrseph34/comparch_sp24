@@ -2,7 +2,6 @@
 
 `include "./instructions/alu.sv"
 `include "./instructions/register_file.sv"
-`include "./memory/memory.sv"
 
 module datapath (
     input logic clk, reset,
@@ -12,6 +11,7 @@ module datapath (
     output logic [31:0] pc, mem_addr, write_data, read_data, alu_result
 );
 
+    // Define internal signals
     logic [31:0] reg_data1, reg_data2, imm, next_pc;
     logic [4:0] rs1, rs2, rd;
     logic zero;
@@ -22,31 +22,24 @@ module datapath (
     assign rs2 = instr[24:20];
     assign rd  = instr[11:7];
     assign opcode = instr[6:0];
-    
-    // Immediate generation - using individual assignments instead of case statement
-    // I-type immediate (ADDI, LW, etc.)
-    logic [31:0] i_imm;
-    assign i_imm = {{20{instr[31]}}, instr[31:20]};
-    
-    // S-type immediate (SW)
-    logic [31:0] s_imm;
-    assign s_imm = {{20{instr[31]}}, instr[31:25], instr[11:7]};
-    
-    // B-type immediate (BEQ, BNE)
-    logic [31:0] b_imm;
-    assign b_imm = {{19{instr[31]}}, instr[31], instr[7], instr[30:25], instr[11:8], 1'b0};
-    //assign b_imm = {{20{instr[31]}}, instr[31], instr[7], instr[30:25], instr[11:8], 1'b0};
-    
-    // Select the appropriate immediate based on opcode
-    always_comb begin
-        if (opcode == 7'b0100011)       // Store
-            imm = s_imm;
-        else if (opcode == 7'b1100011)  // Branch
-            imm = b_imm;
-        else                           // I-type and others
-            imm = i_imm;
-    end
 
+    // Immediate generation 
+    logic [31:0] i_imm, s_imm, b_imm, j_imm;
+
+    // Define immediate values 
+    assign i_imm = {{20{instr[31]}}, instr[31:20]}; // I-type immediate
+    assign s_imm = {{20{instr[31]}}, instr[31:25], instr[11:7]}; // S-type immediate
+    assign b_imm = {{19{instr[31]}}, instr[31], instr[7], instr[30:25], instr[11:8], 1'b0}; // B-type immediate
+    assign j_imm = {{11{instr[31]}}, instr[31], instr[19:12], instr[20], instr[30:21], 1'b0}; // J-type immediate
+
+    // Select the appropriate immediate based on opcode using continuous assignment
+    assign imm = (opcode == 7'b0110111) ? {instr[31:12], 12'b0} :  // LUI
+                 (opcode == 7'b0100011) ? s_imm :                   // Store
+                 (opcode == 7'b1100011) ? b_imm :                   // Branch
+                 (opcode == 7'b1101111) ? j_imm :                   // JAL
+                                           i_imm;                     // I-type and others
+
+    // Register File Instantiation
     register_file RF (
         .clk(clk),
         .reg_write(reg_write),
@@ -58,6 +51,7 @@ module datapath (
         .read_data2(reg_data2)
     );
 
+    // ALU Instantiation
     alu ALU (
         .a(reg_data1),
         .b(alu_src ? imm : reg_data2),
@@ -66,7 +60,7 @@ module datapath (
         .zero(zero)
     );
 
-    // PC update logic
+    // PC Update Logic
     always_ff @(posedge clk or posedge reset) begin
         if (reset)
             pc <= 0;
@@ -77,9 +71,11 @@ module datapath (
     // Calculate next PC value
     always_comb begin
         if (branch && zero)
-            next_pc = pc + imm;
+            next_pc = pc + imm;         // Branch taken
+        else if (opcode == 7'b1101111) // JAL
+            next_pc = pc + imm;        // Jump to address
         else
-            next_pc = pc + 4;
+            next_pc = pc + 4;          // Default next PC
     end
 
     // Outputs

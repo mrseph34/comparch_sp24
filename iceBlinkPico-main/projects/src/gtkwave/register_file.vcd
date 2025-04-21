@@ -1,5 +1,5 @@
 $date
-	Mon Mar 31 20:11:11 2025
+	Sun Apr 20 19:59:33 2025
 $end
 $version
 	Icarus Verilog
@@ -25,6 +25,9 @@ $var wire 5 + rs2 [4:0] $end
 $var wire 32 , write_data [31:0] $end
 $var wire 32 - read_data2 [31:0] $end
 $var wire 32 . read_data1 [31:0] $end
+$scope function read_register $end
+$var reg 5 / reg_index [4:0] $end
+$upscope $end
 $upscope $end
 $upscope $end
 $enddefinitions $end
@@ -33,6 +36,7 @@ $dumpall
 $end
 #0
 $dumpvars
+bx /
 bx .
 bx -
 b0 ,
