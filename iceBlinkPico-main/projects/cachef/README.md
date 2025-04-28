@@ -16,9 +16,9 @@ cachef/
 │   └── set_associative_cache.sv
 │
 ├── testbenches/
-│   ├── tb_direct_mapped.sv
-│   ├── tb_fully_associative.sv
-│   └── tb_set_associative.sv
+│   ├── direct_mapped_cache_tb.sv
+│   ├── fully_associative_tb.sv
+│   └── set_associative_tb.sv
 │
 ├── simulations/
 │   ├── run_simulation.py

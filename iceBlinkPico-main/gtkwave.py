@@ -44,9 +44,9 @@ def run_simulation(folder_path, testbench_name, sv_name, remake):
 
 if __name__ == "__main__":
     remake = input("Remake (y/n): ").strip().lower() == "y"
-    folder_name = input("Folder Name: ") or "src"
-    sv_name = input("SV File (top.sv): ") or "cpu.sv"
-    testbench_name = input("Testbench File (testbench.sv): ") or "tests/cpu_tb.sv"
+    folder_name = input("Folder Name: ") or "cachef"
+    sv_name = input("SV File (top.sv): ") or "caches/direct_mapped_cache.sv"
+    testbench_name = input("Testbench File (testbench.sv): ") or "testbenches/direct_mapped_cache_tb.sv"
 
     base_dirs = [projects_dir, examples_dir]
     folder_found = False
