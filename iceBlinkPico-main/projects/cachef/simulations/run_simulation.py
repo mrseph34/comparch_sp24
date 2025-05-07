@@ -15,7 +15,7 @@ def run_simulation(folder_path, testbench_name, sv_name, remake, parameters):
     cache_size = parameters["CACHE_SIZE"]
     block_size = parameters["BLOCK_SIZE"]
     assoc = parameters.get("ASSOC", cache_size // block_size)
-    
+
     sv_base_name = os.path.splitext(os.path.basename(sv_name))[0]
     vcd_path = os.path.join(gtkwave_dir, f"{sv_base_name}.vcd")
     vvp_path = os.path.join(gtkwave_dir, f"{sv_base_name}.vvp")
@@ -159,11 +159,11 @@ def main():
             "CACHE_SIZE": 512,
             "BLOCK_SIZE": 32,
         }),
-        # ("caches/set_associative_cache.sv", "testbenches/set_associative_cache_tb.sv", {
-        #     "CACHE_SIZE": 512,
-        #     "BLOCK_SIZE": 32,
-        #     "ASSOC": 2,
-        # }),
+        ("caches/set_associative_cache.sv", "testbenches/set_associative_cache_tb.sv", {
+            "CACHE_SIZE": 512,
+            "BLOCK_SIZE": 32,
+            "ASSOC": 2,
+        }),
     ]
 
     base_dirs = [projects_dir, examples_dir]

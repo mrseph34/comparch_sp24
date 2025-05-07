@@ -90,10 +90,11 @@ def generate_cache_configs():
 def main():
     remake = input("Remake (y/n): ").strip().lower() == "y"
     folder_name = input("Folder Name: ") or "cachef"
+    cache_type =  input("Cache Type: ") or "direct_mapped_cache"
 
     # Ensure results directory is created
-    summary_results_path = os.path.join(projects_dir, folder_name, 'results', 'tuned_results.txt')
-    full_summary_results_path = os.path.join(projects_dir, folder_name, 'results', 'tuned_results_summary.txt')
+    summary_results_path = os.path.join(projects_dir, folder_name, 'results', cache_type+'_tuned_results.txt')
+    full_summary_results_path = os.path.join(projects_dir, folder_name, 'results', cache_type+'_tuned_results_summary.txt')
 
     base_dirs = [projects_dir, examples_dir]
     folder_found = False
@@ -109,8 +110,8 @@ def main():
             # Generate cache configurations
             for parameters in generate_cache_configs():
                 output_file = run_simulation(folder_path,
-                                              "testbenches/direct_mapped_cache_tb.sv",
-                                              "caches/direct_mapped_cache.sv",
+                                              "testbenches/"+cache_type+"_tb.sv",
+                                              "caches/"+cache_type+".sv",
                                               remake, parameters)
                 metrics = extract_metrics(output_file)
                 summary_results.append((parameters, metrics))

@@ -25,8 +25,20 @@ Configuration: Direct Mapped Test Config
     Write Misses: 55
     Overall Hit Rate: 41.08%
 
+Configuration: Direct Mapped Test Config
+  Parameters: {'CACHE_SIZE': 512, 'BLOCK_SIZE': 32, 'ASSOC': 2}
+  Metrics:
+    Total Accesses: 166
+    Total Hits: 102
+    Total Misses: 64
+    Read Hits: 67
+    Read Misses: 27
+    Write Hits: 35
+    Write Misses: 37
+    Overall Hit Rate: 61.45%
+
 --- Best Configuration (by Hit Rate %) ---
 Configuration: Direct Mapped Test Config
-Parameters: {'CACHE_SIZE': 512, 'BLOCK_SIZE': 32, 'ASSOC': 1}
-Total Hits: 130
-Overall Hit Rate: 59.36%
+Parameters: {'CACHE_SIZE': 512, 'BLOCK_SIZE': 32, 'ASSOC': 2}
+Total Hits: 102
+Overall Hit Rate: 61.45%
