@@ -77,9 +77,10 @@ def extract_metrics(output_file):
 
 def generate_cache_configs():
     cache_configs = []
+    # [1, 2, 4, 8, 16]
     for cache_size in [128, 256, 512]:
         for block_size in [8, 16, 32]:
-            for assoc in [1]:  # Just direct-mapped for now
+            for assoc in [1, 2]:
                 cache_configs.append({
                     "CACHE_SIZE": cache_size,
                     "BLOCK_SIZE": block_size,
@@ -90,7 +91,7 @@ def generate_cache_configs():
 def main():
     remake = input("Remake (y/n): ").strip().lower() == "y"
     folder_name = input("Folder Name: ") or "cachef"
-    cache_type =  input("Cache Type: ") or "direct_mapped_cache"
+    cache_type =  input("Cache Type: ") or "set_associative_cache"
 
     # Ensure results directory is created
     summary_results_path = os.path.join(projects_dir, folder_name, 'results', cache_type+'_tuned_results.txt')

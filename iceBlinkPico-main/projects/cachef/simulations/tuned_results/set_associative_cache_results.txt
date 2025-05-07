@@ -1,11 +1,11 @@
 Simulation Parameters:
 CACHE_SIZE = 128 bytes
-BLOCK_SIZE = 32 bytes
+BLOCK_SIZE = 16 bytes
 ASSOC = 2 ways
-NUM_SETS = 2 sets
+NUM_SETS = 4 sets
 TAG_WIDTH = 26 bits
-INDEX_WIDTH = 1 bits
-BLOCK_OFFSET_WIDTH = 5 bits
+INDEX_WIDTH = 2 bits
+BLOCK_OFFSET_WIDTH = 4 bits
 -------------------------------------
 VCD info: dumpfile set_associative_cache.vcd opened for output.
 Test 1 - Fill Set 0: Read Hits: 0, Read Misses: 0, Write Hits: 0, Write Misses: 2
@@ -13,21 +13,21 @@ Test 2 - Read Back Set 0: Read Hits: 2, Read Misses: 0, Write Hits: 0, Write Mis
 Test 3 - Eviction in Set 0: Read Hits: 0, Read Misses: 0, Write Hits: 0, Write Misses: 1
 Test 4 - Read First Address After Eviction: Read Hits: 0, Read Misses: 1, Write Hits: 0, Write Misses: 0
 Test 5 - Read New Address After Eviction: Read Hits: 1, Read Misses: 0, Write Hits: 0, Write Misses: 0
-Test 6 - Write/Read Different Sets: Read Hits: 2, Read Misses: 0, Write Hits: 0, Write Misses: 2
+Test 6 - Write/Read Different Sets: Read Hits: 4, Read Misses: 0, Write Hits: 0, Write Misses: 4
 Test 7 - Different Offsets Same Block: Read Hits: 3, Read Misses: 0, Write Hits: 2, Write Misses: 1
 Test 8 - Fill Set 2 Beyond Capacity: Read Hits: 0, Read Misses: 0, Write Hits: 0, Write Misses: 4
 Test 9 - Read Back Set 2 After Eviction: Read Hits: 2, Read Misses: 4, Write Hits: 0, Write Misses: 0
 Test 10 - Set Conflict Misses: Read Hits: 0, Read Misses: 4, Write Hits: 0, Write Misses: 4
-Test 11 - Sequential Access Across Sets: Read Hits: 4, Read Misses: 0, Write Hits: 0, Write Misses: 4
+Test 11 - Sequential Access Across Sets: Read Hits: 8, Read Misses: 0, Write Hits: 0, Write Misses: 8
 Test 12 - Random Access Pattern: Read Hits: 3, Read Misses: 2, Write Hits: 2, Write Misses: 0
-Test 13 - Strided Access Across Sets: Read Hits: 0, Read Misses: 4, Write Hits: 0, Write Misses: 0
-Test 14 - Different Block Offsets: Read Hits: 32, Read Misses: 0, Write Hits: 31, Write Misses: 1
+Test 13 - Strided Access Across Sets: Read Hits: 0, Read Misses: 8, Write Hits: 0, Write Misses: 0
+Test 14 - Different Block Offsets: Read Hits: 16, Read Misses: 0, Write Hits: 15, Write Misses: 1
 --- Simulation Complete ---
-Total Accesses: 118
-Total Read Hits: 49
-Total Read Misses: 15
-Total Write Hits: 35
-Total Write Misses: 19
-Hit Rate: 71.19%
+Total Accesses: 102
+Total Read Hits: 39
+Total Read Misses: 19
+Total Write Hits: 19
+Total Write Misses: 25
+Hit Rate: 56.86%
 -------------------------------------
-testbenches/set_associative_cache_tb.sv:272: $finish called at 2420 (1s)
+testbenches/set_associative_cache_tb.sv:272: $finish called at 2100 (1s)

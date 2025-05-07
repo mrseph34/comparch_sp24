@@ -1,28 +1,28 @@
 Simulation Parameters:
-CACHE_SIZE = 128 bytes
+CACHE_SIZE = 512 bytes
 BLOCK_SIZE = 32 bytes
-ASSOC = 4 (Fully Associative)
+ASSOC = 16 (Fully Associative)
 -------------------------------------
 VCD info: dumpfile fully_associative_cache.vcd opened for output.
-Test Results: Read Hits: 0, Read Misses: 0, Write Hits: 0, Write Misses: 4
-Test Results: Read Hits: 4, Read Misses: 0, Write Hits: 0, Write Misses: 0
+Test Results: Read Hits: 0, Read Misses: 0, Write Hits: 0, Write Misses: 16
+Test Results: Read Hits: 16, Read Misses: 0, Write Hits: 0, Write Misses: 0
 Test Results: Read Hits: 0, Read Misses: 0, Write Hits: 0, Write Misses: 1
 Test Results: Read Hits: 0, Read Misses: 1, Write Hits: 0, Write Misses: 0
 Test Results: Read Hits: 1, Read Misses: 0, Write Hits: 0, Write Misses: 0
 Test Results: Read Hits: 3, Read Misses: 0, Write Hits: 2, Write Misses: 1
 Test Results: Read Hits: 2, Read Misses: 1, Write Hits: 0, Write Misses: 1
-Test Results: Read Hits: 0, Read Misses: 8, Write Hits: 0, Write Misses: 0
-Test Results: Read Hits: 0, Read Misses: 8, Write Hits: 0, Write Misses: 0
-Test Results: Read Hits: 24, Read Misses: 8, Write Hits: 0, Write Misses: 0
-Test Results: Read Hits: 0, Read Misses: 0, Write Hits: 0, Write Misses: 8
-Test Results: Read Hits: 0, Read Misses: 8, Write Hits: 0, Write Misses: 0
+Test Results: Read Hits: 0, Read Misses: 32, Write Hits: 0, Write Misses: 0
+Test Results: Read Hits: 0, Read Misses: 32, Write Hits: 0, Write Misses: 0
+Test Results: Read Hits: 96, Read Misses: 32, Write Hits: 0, Write Misses: 0
+Test Results: Read Hits: 0, Read Misses: 0, Write Hits: 0, Write Misses: 32
+Test Results: Read Hits: 0, Read Misses: 32, Write Hits: 0, Write Misses: 0
 Test Results: Read Hits: 3, Read Misses: 0, Write Hits: 2, Write Misses: 1
 Test Results: Read Hits: 4, Read Misses: 0, Write Hits: 0, Write Misses: 3
 --- Simulation Complete ---
-Total Accesses: 98
-Total Read Hits: 41
-Total Read Misses: 34
+Total Accesses: 314
+Total Read Hits: 125
+Total Read Misses: 130
 Total Write Hits: 4
-Total Write Misses: 19
+Total Write Misses: 55
 -------------------------------------
-testbenches/fully_associative_cache_tb.sv:234: $finish called at 2020 (1s)
+testbenches/fully_associative_cache_tb.sv:234: $finish called at 6340 (1s)

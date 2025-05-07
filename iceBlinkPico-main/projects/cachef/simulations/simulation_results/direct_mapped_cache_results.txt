@@ -1,11 +1,11 @@
 Simulation Parameters:
-CACHE_SIZE = 512
+CACHE_SIZE = 128
 BLOCK_SIZE = 32
 ASSOC = 1
-NUM_SETS = 16
+NUM_SETS = 4
 BLOCK_OFFSET_WIDTH = 5
-INDEX_WIDTH = 4
-TAG_WIDTH = 23
+INDEX_WIDTH = 2
+TAG_WIDTH = 25
 --- Resetting Cache ---
 VCD info: dumpfile direct_mapped_cache.vcd opened for output.
 --- Basic Test 1: Initial Write ---
@@ -20,23 +20,23 @@ Test Results: Read Hits: 0, Read Misses: 1, Write Hits: 0, Write Misses: 0
 --- Basic Test 7: Read from New Set ---
 Test Results: Read Hits: 1, Read Misses: 0, Write Hits: 0, Write Misses: 1
 --- Test 8: Sequential Read Access ---
-Test Results: Read Hits: 0, Read Misses: 32, Write Hits: 0, Write Misses: 0
+Test Results: Read Hits: 0, Read Misses: 8, Write Hits: 0, Write Misses: 0
 --- Test 9: Strided Read Access (Stride = Block Size) ---
-Test Results: Read Hits: 0, Read Misses: 16, Write Hits: 0, Write Misses: 0
+Test Results: Read Hits: 0, Read Misses: 4, Write Hits: 0, Write Misses: 0
 --- Test 10: Strided Read Access (Stride < Block Size) ---
-Test Results: Read Hits: 48, Read Misses: 16, Write Hits: 0, Write Misses: 0
+Test Results: Read Hits: 12, Read Misses: 4, Write Hits: 0, Write Misses: 0
 --- Test 11: Sequential Write Access ---
-Test Results: Read Hits: 0, Read Misses: 0, Write Hits: 0, Write Misses: 16
+Test Results: Read Hits: 0, Read Misses: 0, Write Hits: 0, Write Misses: 4
 --- Test 12: Read Back Sequential Writes ---
-Test Results: Read Hits: 16, Read Misses: 0, Write Hits: 0, Write Misses: 0
+Test Results: Read Hits: 4, Read Misses: 0, Write Hits: 0, Write Misses: 0
 --- Test 13: Accesses within the same set, different offsets ---
 Test Results: Read Hits: 32, Read Misses: 0, Write Hits: 31, Write Misses: 1
 --- Test 14: Random Access ---
 Test Results: Read Hits: 1, Read Misses: 2, Write Hits: 0, Write Misses: 1
 --- Simulation Complete ---
-Total Accesses: 219
-Total Read Hits: 99
-Total Read Misses: 68
+Total Accesses: 111
+Total Read Hits: 51
+Total Read Misses: 20
 Total Write Hits: 31
-Total Write Misses: 21
-testbenches/direct_mapped_cache_tb.sv:218: $finish called at 4440 (1s)
+Total Write Misses: 9
+testbenches/direct_mapped_cache_tb.sv:218: $finish called at 2280 (1s)

@@ -149,18 +149,21 @@ def main():
     full_summary_results_path = os.path.join(projects_dir, folder_name, 'results', 'full_summary_results.txt')
     os.makedirs(os.path.dirname(summary_results_path), exist_ok=True)
 
-    cache_files = [
+    cache_files = [ # NOTE: USING THE BEST CACHES PARAM FOR EACH VER
+        # Best Configuration: {'CACHE_SIZE': 128, 'BLOCK_SIZE': 32, 'ASSOC': 1} with Hit Rate: 73.87%
         ("caches/direct_mapped_cache.sv", "testbenches/direct_mapped_cache_tb.sv", {
-            "CACHE_SIZE": 512,
+            "CACHE_SIZE": 128,
             "BLOCK_SIZE": 32,
             "ASSOC": 1,
         }),
+        # Best Configuration: {'CACHE_SIZE': 128, 'BLOCK_SIZE': 32} with Hit Rate: 45.92%
         ("caches/fully_associative_cache.sv", "testbenches/fully_associative_cache_tb.sv", {
-            "CACHE_SIZE": 512,
+            "CACHE_SIZE": 128,
             "BLOCK_SIZE": 32,
         }),
+        # Best Configuration: {'CACHE_SIZE': 128, 'BLOCK_SIZE': 32, 'ASSOC': 2} with Hit Rate: 71.19%
         ("caches/set_associative_cache.sv", "testbenches/set_associative_cache_tb.sv", {
-            "CACHE_SIZE": 512,
+            "CACHE_SIZE": 128,
             "BLOCK_SIZE": 32,
             "ASSOC": 2,
         }),

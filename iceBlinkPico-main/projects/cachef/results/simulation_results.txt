@@ -1,3 +1,3 @@
-Parameters: {'CACHE_SIZE': 512, 'BLOCK_SIZE': 32, 'ASSOC': 1} - Total Accesses: 219, Hits: 130, Misses: 89
-Parameters: {'CACHE_SIZE': 512, 'BLOCK_SIZE': 32} - Total Accesses: 314, Hits: 129, Misses: 185
-Parameters: {'CACHE_SIZE': 512, 'BLOCK_SIZE': 32, 'ASSOC': 2} - Total Accesses: 166, Hits: 102, Misses: 64
+Parameters: {'CACHE_SIZE': 128, 'BLOCK_SIZE': 32, 'ASSOC': 1} - Total Accesses: 111, Hits: 82, Misses: 29
+Parameters: {'CACHE_SIZE': 128, 'BLOCK_SIZE': 32} - Total Accesses: 98, Hits: 45, Misses: 53
+Parameters: {'CACHE_SIZE': 128, 'BLOCK_SIZE': 32, 'ASSOC': 2} - Total Accesses: 118, Hits: 84, Misses: 34

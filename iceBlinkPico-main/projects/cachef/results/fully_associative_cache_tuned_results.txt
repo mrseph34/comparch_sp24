@@ -1,0 +1,11 @@
+Parameters: {'CACHE_SIZE': 128, 'BLOCK_SIZE': 8} - Total Accesses: 314, Hits: 128, Misses: 186
+Parameters: {'CACHE_SIZE': 128, 'BLOCK_SIZE': 16} - Total Accesses: 170, Hits: 73, Misses: 97
+Parameters: {'CACHE_SIZE': 128, 'BLOCK_SIZE': 32} - Total Accesses: 98, Hits: 45, Misses: 53
+Parameters: {'CACHE_SIZE': 256, 'BLOCK_SIZE': 8} - Total Accesses: 602, Hits: 240, Misses: 362
+Parameters: {'CACHE_SIZE': 256, 'BLOCK_SIZE': 16} - Total Accesses: 314, Hits: 129, Misses: 185
+Parameters: {'CACHE_SIZE': 256, 'BLOCK_SIZE': 32} - Total Accesses: 170, Hits: 73, Misses: 97
+Parameters: {'CACHE_SIZE': 512, 'BLOCK_SIZE': 8} - Total Accesses: 1178, Hits: 464, Misses: 714
+Parameters: {'CACHE_SIZE': 512, 'BLOCK_SIZE': 16} - Total Accesses: 602, Hits: 241, Misses: 361
+Parameters: {'CACHE_SIZE': 512, 'BLOCK_SIZE': 32} - Total Accesses: 314, Hits: 129, Misses: 185
+
+Best Configuration: {'CACHE_SIZE': 128, 'BLOCK_SIZE': 32} with Hit Rate: 45.92%

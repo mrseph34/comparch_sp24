@@ -1,0 +1,20 @@
+Parameters: {'CACHE_SIZE': 128, 'BLOCK_SIZE': 8, 'ASSOC': 1} - Total Accesses: 143, Hits: 58, Misses: 85
+Parameters: {'CACHE_SIZE': 128, 'BLOCK_SIZE': 8, 'ASSOC': 2} - Total Accesses: 118, Hits: 54, Misses: 64
+Parameters: {'CACHE_SIZE': 128, 'BLOCK_SIZE': 16, 'ASSOC': 1} - Total Accesses: 111, Hits: 58, Misses: 53
+Parameters: {'CACHE_SIZE': 128, 'BLOCK_SIZE': 16, 'ASSOC': 2} - Total Accesses: 102, Hits: 58, Misses: 44
+Parameters: {'CACHE_SIZE': 128, 'BLOCK_SIZE': 32, 'ASSOC': 1} - Total Accesses: 119, Hits: 82, Misses: 37
+Parameters: {'CACHE_SIZE': 128, 'BLOCK_SIZE': 32, 'ASSOC': 2} - Total Accesses: 118, Hits: 84, Misses: 34
+Parameters: {'CACHE_SIZE': 256, 'BLOCK_SIZE': 8, 'ASSOC': 1} - Total Accesses: 239, Hits: 90, Misses: 149
+Parameters: {'CACHE_SIZE': 256, 'BLOCK_SIZE': 8, 'ASSOC': 2} - Total Accesses: 182, Hits: 78, Misses: 104
+Parameters: {'CACHE_SIZE': 256, 'BLOCK_SIZE': 16, 'ASSOC': 1} - Total Accesses: 159, Hits: 74, Misses: 85
+Parameters: {'CACHE_SIZE': 256, 'BLOCK_SIZE': 16, 'ASSOC': 2} - Total Accesses: 134, Hits: 70, Misses: 64
+Parameters: {'CACHE_SIZE': 256, 'BLOCK_SIZE': 32, 'ASSOC': 1} - Total Accesses: 143, Hits: 90, Misses: 53
+Parameters: {'CACHE_SIZE': 256, 'BLOCK_SIZE': 32, 'ASSOC': 2} - Total Accesses: 134, Hits: 90, Misses: 44
+Parameters: {'CACHE_SIZE': 512, 'BLOCK_SIZE': 8, 'ASSOC': 1} - Total Accesses: 431, Hits: 155, Misses: 276
+Parameters: {'CACHE_SIZE': 512, 'BLOCK_SIZE': 8, 'ASSOC': 2} - Total Accesses: 310, Hits: 126, Misses: 184
+Parameters: {'CACHE_SIZE': 512, 'BLOCK_SIZE': 16, 'ASSOC': 1} - Total Accesses: 255, Hits: 106, Misses: 149
+Parameters: {'CACHE_SIZE': 512, 'BLOCK_SIZE': 16, 'ASSOC': 2} - Total Accesses: 198, Hits: 94, Misses: 104
+Parameters: {'CACHE_SIZE': 512, 'BLOCK_SIZE': 32, 'ASSOC': 1} - Total Accesses: 191, Hits: 106, Misses: 85
+Parameters: {'CACHE_SIZE': 512, 'BLOCK_SIZE': 32, 'ASSOC': 2} - Total Accesses: 166, Hits: 102, Misses: 64
+
+Best Configuration: {'CACHE_SIZE': 128, 'BLOCK_SIZE': 32, 'ASSOC': 2} with Hit Rate: 71.19%
