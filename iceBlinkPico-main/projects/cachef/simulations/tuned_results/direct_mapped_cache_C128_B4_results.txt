@@ -1,0 +1,42 @@
+VCD info: dumpfile direct_mapped_cache.vcd opened for output.
+Test 1: Sequential Access Pattern
+Address: 00000000, Write: 00000064, Read: 00000064, Hit: 1, Miss: 0
+Address: 00000010, Write: 00000065, Read: 00000064, Hit: 0, Miss: 1
+Address: 00000020, Write: 00000066, Read: 00000064, Hit: 0, Miss: 1
+Address: 00000030, Write: 00000067, Read: 00000064, Hit: 0, Miss: 1
+Address: 00000040, Write: 00000068, Read: 00000064, Hit: 0, Miss: 1
+Address: 00000050, Write: 00000069, Read: 00000064, Hit: 0, Miss: 1
+Address: 00000060, Write: 0000006a, Read: 00000064, Hit: 0, Miss: 1
+Address: 00000070, Write: 0000006b, Read: 00000064, Hit: 0, Miss: 1
+Address: 00000080, Write: 0000006c, Read: 00000064, Hit: 0, Miss: 1
+Address: 00000090, Write: 0000006d, Read: 00000064, Hit: 0, Miss: 1
+Address: 000000a0, Write: 0000006e, Read: 00000064, Hit: 0, Miss: 1
+Address: 000000b0, Write: 0000006f, Read: 00000064, Hit: 0, Miss: 1
+Address: 000000c0, Write: 00000070, Read: 00000064, Hit: 0, Miss: 1
+Address: 000000d0, Write: 00000071, Read: 00000064, Hit: 0, Miss: 1
+Address: 000000e0, Write: 00000072, Read: 00000064, Hit: 0, Miss: 1
+Address: 000000f0, Write: 00000073, Read: 00000064, Hit: 0, Miss: 1
+
+Test 2: Random Access Pattern
+Address: 00000000, Write: 000000c8, Read: 00000065, Hit: 1, Miss: 0
+Address: 00000210, Write: 000000c9, Read: 00000065, Hit: 0, Miss: 1
+Address: 00000020, Write: 000000ca, Read: 00000067, Hit: 1, Miss: 0
+Address: 00000230, Write: 000000cb, Read: 00000067, Hit: 0, Miss: 1
+Address: 00000040, Write: 000000cc, Read: 00000069, Hit: 1, Miss: 0
+Address: 00000250, Write: 000000cd, Read: 00000069, Hit: 0, Miss: 1
+Address: 00000060, Write: 000000ce, Read: 0000006b, Hit: 1, Miss: 0
+Address: 00000270, Write: 000000cf, Read: 0000006b, Hit: 0, Miss: 1
+Address: 00000080, Write: 000000d0, Read: 0000006d, Hit: 1, Miss: 0
+Address: 00000290, Write: 000000d1, Read: 0000006d, Hit: 0, Miss: 1
+Address: 000000a0, Write: 000000d2, Read: 0000006f, Hit: 1, Miss: 0
+Address: 000002b0, Write: 000000d3, Read: 0000006f, Hit: 0, Miss: 1
+Address: 000000c0, Write: 000000d4, Read: 00000071, Hit: 1, Miss: 0
+Address: 000002d0, Write: 000000d5, Read: 00000071, Hit: 0, Miss: 1
+Address: 000000e0, Write: 000000d6, Read: 00000073, Hit: 1, Miss: 0
+Address: 000002f0, Write: 000000d7, Read: 00000073, Hit: 0, Miss: 1
+
+Cache Statistics:
+Total Accesses:         128
+Total Hits:          18 (14.06%)
+Total Misses:          46 (35.94%)
+testbenches/direct_mapped_cache_tb.sv:121: $finish called at 1335 (1s)

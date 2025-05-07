@@ -15,7 +15,7 @@ def run_simulation(folder_path, testbench_name, sv_name, remake):
     vcd_path = os.path.join(gtkwave_dir, f"{sv_base_name}.vcd")
 
     # Run Icarus Verilog, VVP, and GTKWave using the sourced environment
-    if remake != None and remake != "":
+    if (remake != None and remake != ""):
         result = subprocess.run(
             f'source ~/.bash_profile && iverilog -g2012 -o "{gtkwave_dir}/{sv_base_name}.vvp" {sv_name} {testbench_name}',
             shell=True, executable="/bin/bash", cwd=folder_path

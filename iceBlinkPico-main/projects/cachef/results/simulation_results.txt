@@ -1,0 +1,3 @@
+direct_mapped_cache.sv - Total Accesses: 219, Hits: 130, Misses: 89
+
+Best Configuration: direct_mapped_cache.sv

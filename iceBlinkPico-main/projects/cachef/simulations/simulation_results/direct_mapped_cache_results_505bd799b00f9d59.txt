@@ -1,11 +1,3 @@
-Simulation Parameters:
-CACHE_SIZE = 512
-BLOCK_SIZE = 32
-ASSOC = 1
-NUM_SETS = 16
-BLOCK_OFFSET_WIDTH = 5
-INDEX_WIDTH = 4
-TAG_WIDTH = 23
 --- Resetting Cache ---
 VCD info: dumpfile direct_mapped_cache.vcd opened for output.
 --- Basic Test 1: Initial Write ---
@@ -30,13 +22,13 @@ Test Results: Read Hits: 0, Read Misses: 0, Write Hits: 0, Write Misses: 16
 --- Test 12: Read Back Sequential Writes ---
 Test Results: Read Hits: 16, Read Misses: 0, Write Hits: 0, Write Misses: 0
 --- Test 13: Accesses within the same set, different offsets ---
-Test Results: Read Hits: 32, Read Misses: 0, Write Hits: 31, Write Misses: 1
+Test Results: Read Hits: 16, Read Misses: 0, Write Hits: 15, Write Misses: 1
 --- Test 14: Random Access ---
 Test Results: Read Hits: 1, Read Misses: 2, Write Hits: 0, Write Misses: 1
 --- Simulation Complete ---
-Total Accesses: 219
-Total Read Hits: 99
+Total Accesses: 187
+Total Read Hits: 83
 Total Read Misses: 68
-Total Write Hits: 31
+Total Write Hits: 15
 Total Write Misses: 21
-testbenches/direct_mapped_cache_tb.sv:218: $finish called at 4440 (1s)
+/Users/user/Documents/Coding/Computer Architecture/comparch_sp24/iceBlinkPico-main/projects/cachef/testbenches/direct_mapped_cache_tb.sv:206: $finish called at 3800 (1s)
