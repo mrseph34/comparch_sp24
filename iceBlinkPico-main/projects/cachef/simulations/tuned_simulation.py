@@ -12,11 +12,15 @@ def run_simulation(folder_path, testbench_name, sv_name, remake, parameters):
 
     os.makedirs(os.path.join(folder_path, 'simulations', 'tuned_results'), exist_ok=True)
 
+    cache_size = parameters["CACHE_SIZE"]
+    block_size = parameters["BLOCK_SIZE"]
+    assoc = parameters.get("ASSOC", cache_size // block_size)
+
     # Generate parameters string for the testbench using tb_base_name
     param_override_str = " ".join([
-        f"-P{tb_base_name}.CACHE_SIZE={parameters['CACHE_SIZE']}",
-        f"-P{tb_base_name}.BLOCK_SIZE={parameters['BLOCK_SIZE']}",
-        f"-P{tb_base_name}.ASSOC={parameters['ASSOC']}"
+        f"-P{tb_base_name}.CACHE_SIZE={cache_size}",
+        f"-P{tb_base_name}.BLOCK_SIZE={block_size}",
+        f"-P{tb_base_name}.ASSOC={assoc}"
     ])
 
     # Check if the VVP file needs to be created or updated
@@ -91,7 +95,6 @@ def main():
     summary_results_path = os.path.join(projects_dir, folder_name, 'results', 'tuned_results.txt')
     full_summary_results_path = os.path.join(projects_dir, folder_name, 'results', 'tuned_results_summary.txt')
 
-
     base_dirs = [projects_dir, examples_dir]
     folder_found = False
 
@@ -118,9 +121,13 @@ def main():
                     summary_file.write(f"Parameters: {params} - Total Accesses: {metrics['total_accesses']}, "
                                        f"Hits: {metrics['total_hits']}, Misses: {metrics['total_misses']}\n")
 
-                # Determine the best configuration based on hits
-                best_cache = max(summary_results, key=lambda x: x[1]['total_hits'])
-                summary_file.write(f"\nBest Configuration: {best_cache[0]}\n")
+                # Determine the best configuration based on hit rate
+                best_cache = max(summary_results, 
+                                 key=lambda x: (x[1]['total_accesses'] > 0,
+                                                x[1]['total_hits'] / x[1]['total_accesses'] * 100 if x[1]['total_accesses'] > 0 else 0))
+
+                best_hit_rate = (best_cache[1]['total_hits'] / best_cache[1]['total_accesses'] * 100) if best_cache[1]['total_accesses'] > 0 else 0
+                summary_file.write(f"\nBest Configuration: {best_cache[0]} with Hit Rate: {best_hit_rate:.2f}%\n")
 
             with open(full_summary_results_path, 'w') as summary_file:
                 summary_file.write("Cache Simulation Summary\n")
@@ -137,14 +144,21 @@ def main():
                     summary_file.write(f"    Read Misses: {metrics['total_read_misses']}\n")
                     summary_file.write(f"    Write Hits: {metrics['total_write_hits']}\n")
                     summary_file.write(f"    Write Misses: {metrics['total_write_misses']}\n")
+                    
                     overall_hit_rate = (metrics['total_hits'] / metrics['total_accesses'] * 100) if metrics['total_accesses'] > 0 else 0
                     summary_file.write(f"    Overall Hit Rate: {overall_hit_rate:.2f}%\n\n")
 
-                best_cache = max(summary_results, key=lambda x: x[1]['total_hits'])
-                summary_file.write("--- Best Configuration (by Total Hits) ---\n")
+                # Finding best cache configuration based on hit rate
+                best_cache = max(summary_results, 
+                                 key=lambda x: (x[1]['total_accesses'] > 0, 
+                                                x[1]['total_hits'] / x[1]['total_accesses'] * 100 if x[1]['total_accesses'] > 0 else 0))
+
+                best_hit_rate = (best_cache[1]['total_hits'] / best_cache[1]['total_accesses'] * 100) if best_cache[1]['total_accesses'] > 0 else 0
+                summary_file.write("--- Best Configuration (by Hit Rate %) ---\n")
                 summary_file.write(f"Configuration: Direct Mapped Test Config\n")
                 summary_file.write(f"Parameters: {best_cache[0]}\n")
                 summary_file.write(f"Total Hits: {best_cache[1]['total_hits']}\n")
+                summary_file.write(f"Overall Hit Rate: {best_hit_rate:.2f}%\n")
 
             break
 

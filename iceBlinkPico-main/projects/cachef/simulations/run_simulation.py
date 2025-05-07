@@ -14,8 +14,8 @@ def run_simulation(folder_path, testbench_name, sv_name, remake, parameters):
     # Extract parameters
     cache_size = parameters["CACHE_SIZE"]
     block_size = parameters["BLOCK_SIZE"]
-    assoc = parameters["ASSOC"]
-
+    assoc = parameters.get("ASSOC", cache_size // block_size)
+    
     sv_base_name = os.path.splitext(os.path.basename(sv_name))[0]
     vcd_path = os.path.join(gtkwave_dir, f"{sv_base_name}.vcd")
     vvp_path = os.path.join(gtkwave_dir, f"{sv_base_name}.vvp")
@@ -146,6 +146,7 @@ def main():
 
     # Ensure results directory is created
     summary_results_path = os.path.join(projects_dir, folder_name, 'results', 'simulation_results.txt')
+    full_summary_results_path = os.path.join(projects_dir, folder_name, 'results', 'full_summary_results.txt')
     os.makedirs(os.path.dirname(summary_results_path), exist_ok=True)
 
     cache_files = [
@@ -154,7 +155,15 @@ def main():
             "BLOCK_SIZE": 32,
             "ASSOC": 1,
         }),
-        # Add more cache/testbench pairs here as needed
+        ("caches/fully_associative_cache.sv", "testbenches/fully_associative_cache_tb.sv", {
+            "CACHE_SIZE": 512,
+            "BLOCK_SIZE": 32,
+        }),
+        # ("caches/set_associative_cache.sv", "testbenches/set_associative_cache_tb.sv", {
+        #     "CACHE_SIZE": 512,
+        #     "BLOCK_SIZE": 32,
+        #     "ASSOC": 2,
+        # }),
     ]
 
     base_dirs = [projects_dir, examples_dir]
@@ -191,17 +200,47 @@ def main():
                 )
                 
                 metrics = extract_metrics(output_file)
-                summary_results.append((sv_name_relative, metrics))
+                summary_results.append((parameters, metrics))
 
             # Write summary results
             with open(summary_results_path, 'w') as summary_file:
-                for sv_name, metrics in summary_results:
-                    summary_file.write(f"{os.path.basename(sv_name)} - Total Accesses: {metrics['total_accesses']}, "
-                                       f"Hits: {metrics['total_hits']}, Misses: {metrics['total_misses']}\n")
+                for params, metrics in summary_results:
+                    summary_file.write(f"Parameters: {params} - Total Accesses: {metrics['total_accesses']}, "
+                                    f"Hits: {metrics['total_hits']}, Misses: {metrics['total_misses']}\n")
+
+            # Write full summary
+            with open(full_summary_results_path, 'w') as full_summary_file:
+                full_summary_file.write("Cache Simulation Summary\n")
+                full_summary_file.write("========================\n\n")
+
+                for params, metrics in summary_results:
+                    full_summary_file.write(f"Configuration: Direct Mapped Test Config\n")
+                    full_summary_file.write("  Parameters: {}\n".format(params))
+                    full_summary_file.write("  Metrics:\n")
+                    full_summary_file.write(f"    Total Accesses: {metrics['total_accesses']}\n")
+                    full_summary_file.write(f"    Total Hits: {metrics['total_hits']}\n")
+                    full_summary_file.write(f"    Total Misses: {metrics['total_misses']}\n")
+                    full_summary_file.write(f"    Read Hits: {metrics['total_read_hits']}\n")
+                    full_summary_file.write(f"    Read Misses: {metrics['total_read_misses']}\n")
+                    full_summary_file.write(f"    Write Hits: {metrics['total_write_hits']}\n")
+                    full_summary_file.write(f"    Write Misses: {metrics['total_write_misses']}\n")
+                    
+                    overall_hit_rate = (metrics['total_hits'] / metrics['total_accesses'] * 100) if metrics['total_accesses'] > 0 else 0
+                    full_summary_file.write(f"    Overall Hit Rate: {overall_hit_rate:.2f}%\n\n")
+
+                # Finding best cache configuration based on hit rate
+                best_cache = max(summary_results, 
+                                key=lambda x: (x[1]['total_accesses'] > 0, 
+                                                x[1]['total_hits'] / x[1]['total_accesses'] * 100 if x[1]['total_accesses'] > 0 else 0))
+
+                # Calculate best hit rate for output
+                best_hit_rate = (best_cache[1]['total_hits'] / best_cache[1]['total_accesses'] * 100) if best_cache[1]['total_accesses'] > 0 else 0
                 
-                # Determine the best configuration based on hits
-                best_cache = max(summary_results, key=lambda x: x[1]['total_hits'])
-                summary_file.write(f"\nBest Configuration: {os.path.basename(best_cache[0])}\n")
+                full_summary_file.write("--- Best Configuration (by Hit Rate %) ---\n")
+                full_summary_file.write(f"Configuration: Direct Mapped Test Config\n")
+                full_summary_file.write(f"Parameters: {best_cache[0]}\n")
+                full_summary_file.write(f"Total Hits: {best_cache[1]['total_hits']}\n")
+                full_summary_file.write(f"Overall Hit Rate: {best_hit_rate:.2f}%\n")
 
             break 
 
@@ -209,7 +248,7 @@ def main():
         print(f"Error: Folder '{folder_name}' not found in directories: {base_dirs}")
         exit(1)
 
-    print("Completed simulation and GTKWave launch process.")
+    print("Completed simulation and result writing process.")
 
 if __name__ == "__main__":
     main()
